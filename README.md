@@ -1,26 +1,37 @@
-
-<div style="background: #308b5a; padding: 10px; color: #fef72d">
-
 # Test Project
 
-<p>
-Create a mini game where clicking the button generate several hand cards. Please be sure to fork this repo, update this readme with any notes on your code.
-</p>
+Create a card game which meets the following acceptance criteria:
 
-- a hand has seven cards
-- the winner of the game will be by the amount of pairs a hand has
-- each "deal" will create a brand new "game" with new hands
-- display those hands
-- mark each hand "pairs" with proper border. Be sure to that diff pairs has diff borders
-- game has two hands by default
-- organized code
+- By default, this card game is played with two players
+- Display a "Play" button in the UI
+- Clicking the "Play" button will deal hands to all players and determine a winner
+    - Deal cards from one standard 52-card deck
+    - A hand contains seven cards
+- Display those hands in the UI
+- The winner of the game is determined by the number of pairs a hand contains
+- Visually indicate which player has won the round
+- Mark each hand's pairs with a colored border
+    - Each pair in a hand should have a unique border color.
 
-### Extra
+- Whenever the "Play" button is pressed again, new hands will be dealt and a new winner will be determined
 
-- option to add or remove hands 2-4
-- tests
+##### Example card -- use these SVG assets when displaying cards
+<img src="http://h3h.net/images/cards/diamond_9.svg" alt="9 of Diamonds" />
 
-### Helpers
+### Extra Credit
 
-#### example card
-<img src="http://h3h.net/images/cards/diamond_9.svg" />
+- Option to add or remove hands (2-4 players allowed)
+- Automated tests
+- TypeScript
+
+
+### Code should be
+- Written in React
+- Readable/understandable
+- Well-organized
+- Efficient
+- Extensible
+- Not overly complicated
+
+### Additional notes
+Please update this readme with any notes on your code.
