@@ -1,5 +1,8 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+
+import { Desk } from 'components/Desk/Desk'
+
+import './App.css'
 
 function App() {
   return (
@@ -13,9 +16,9 @@ function App() {
       <ul>
         <li>A hand has 7 cards</li>
         <li>The winner of the game will be by the amount of pairs a hand has</li>
-        <li>Each "deal" will create a brand new "game" with new hands</li>
+        <li>Each &quot;deal&quot; will create a brand new &quot;game&quot; with new hands</li>
         <li>Display those hands</li>
-        <li>Mark each hand "pairs" with proper border. Be sure diff pair has diff border</li>
+        <li>Mark each hand &quot;pairs&quot; with proper border. Be sure diff pair has diff border</li>
         <li>Game has two hands by default</li>
         <li>Organized code</li>
       </ul>
@@ -32,12 +35,8 @@ function App() {
       </div>
 
       <div>
-        <h4>Deal Button:</h4>
-        <button className="play-button">
-          Deal Cards
-        </button>
+        <Desk />
       </div>
-
     </div>
   );
 }
