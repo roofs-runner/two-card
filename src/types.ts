@@ -29,12 +29,23 @@ export enum Ranks {
 export interface Card {
   rank: Ranks,
   suits: Suits
+  color?: string
 }
+
+export interface CardPair {
+  cards: Card[]
+  color: string
+}
+
+export type CardPairs = { [key in Ranks]?: CardPair }
+export type PairCardType = CardPairs | Record<string, never>
 
 export interface Player {
   name: string
   surname: string
   cards: Card[]
+  pairs: PairCardType
+  pairsNum: number
 }
 
 export interface GamePlayersState {

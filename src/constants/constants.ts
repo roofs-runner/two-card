@@ -27,22 +27,37 @@ export const players: Player[] = [
   {
     name: 'Geralt',
     surname: 'Of Rivia',
-    cards: []
+    cards: [],
+    pairs: {},
+    pairsNum: 0
   },
   {
     name: 'Triss',
     surname: 'Merigold',
-    cards: []
+    cards: [],
+    pairs: {},
+    pairsNum: 0
   },
   {
     name: 'Yenneffer',
     surname: 'Vengerberg',
-    cards: []
+    cards: [],
+    pairs: {},
+    pairsNum: 0
   },
   {
     name: 'Ciri',
     surname: 'Of Cintra',
-    cards: []
+    cards: [],
+    pairs: {},
+    pairsNum: 0
+  },
+  {
+    name: 'Shani',
+    surname: 'Of Oxenfurt',
+    cards: [],
+    pairs: {},
+    pairsNum: 0
   }
 ]
 
