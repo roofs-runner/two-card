@@ -34,7 +34,7 @@ export const generatePlayerCards = (cards: Card[], handSize: number) => {
 export const getCardsPairs = (cards: Card[]): PairCardType => {
   const groupedCards = groupBy(cards, 'rank')
   const cardsKeys = Object.keys(groupedCards)
-  const cardsPairs = cardsKeys.reduce((cardPairs, currentRank: string) => {
+  return cardsKeys.reduce((cardPairs, currentRank: string) => {
     const currentCard = groupedCards[currentRank]
 
     if(currentCard.length >= 2) {
@@ -49,10 +49,6 @@ export const getCardsPairs = (cards: Card[]): PairCardType => {
 
     return cardPairs
   }, {})
-
-  console.log('cardsPairs++++++__________', cardsPairs)
-
-  return cardsPairs
 }
 
 /**
@@ -83,8 +79,6 @@ export const getWinners = (players: Player[]) => {
     } else if (winners.some(winner => winner.pairsNum === player.pairsNum)) {
       winners.push(player)
     }
-
-    console.log('winnnerrrrrs', winners)
   }
 
   return winners

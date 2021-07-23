@@ -1,9 +1,11 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
 import { usePlayers } from 'hooks/usePlayers'
-import { Card, DeckSize, GamePlayersState, PairCardType } from 'types'
+import { DeckSize, GamePlayersState } from 'types'
 import { Results } from 'components/Results/Results'
+import { Configuration } from 'components/Configuration'
+import { GamePlayer } from 'components/Player'
 
 const initialPlayers: GamePlayersState = {
   players: []
@@ -11,106 +13,61 @@ const initialPlayers: GamePlayersState = {
 
 const DeskWrapper = styled.div``
 
-const PlayerWrapper = styled.div``
-
-const CardsWrapper = styled.div`
-  display: flex;
+const ConfigurationWrapper = styled.div`
+  margin: 4rem 0;
 `
 
-const CardWrapper = styled.div<{ borderColor: string }>`
-  border: 2px solid transparent;
-  ${({ borderColor }) => borderColor && `
-    border-color: ${borderColor};
-  `};
+const ResultsWrapper = styled.div`
+  margin: 4rem 0;
 `
-
-const getCardColor = (card: Card, pairs: PairCardType) => {
-  const currentPair = pairs[card.rank]
-
-  return currentPair?.color || ''
-}
 
 export const Desk = () => {
   const [gamePlayers, setGamePlayers] = useState<GamePlayersState>(initialPlayers)
   const [playersNum, setPlayersNum] = useState(2)
   const [deckSize, setDeckSize] = useState(DeckSize.Classic)
-
-  console.log('deckSize!!!!!', deckSize)
-
-
   const [round, setRound] = useState(0)
-  const { generatedPlayers, winners } = usePlayers(
+  const { generatedPlayers, winners } = usePlayers({
     playersNum,
-    round > 0,
+    withCards: round > 0,
     deckSize,
-    gamePlayers.players,
-    setGamePlayers
-  )
+    currPlayers: gamePlayers.players,
+    setPlayers: setGamePlayers
+})
 
-  console.log('winners---->>>>>>>', winners)
-
-  const onCardsDeal = () => {
+  const onCardsDeal = useCallback(() => {
     setRound(round + 1)
-  }
+  }, [round])
 
-  const handlePlayersNumChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const val = event.target.value
-
+  const handlePlayersNumChange = useCallback((val: string) => {
     setPlayersNum(Number(val))
     setRound(0)
-  }
+  }, [setPlayersNum, setRound])
 
-  const handleDeckSizeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const val = event.target.value
-
-    console.log('handleDeckSizeChange', val)
-
+  const handleDeckSizeChange = useCallback((val: string) => {
     setDeckSize(Number(val))
     setRound(0)
-  }
+  }, [setDeckSize, setRound])
 
   return (
     <DeskWrapper>
-      <div>
-        <select value={playersNum} onChange={handlePlayersNumChange}>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-        </select>
-        <select value={deckSize} onChange={handleDeckSizeChange}>
-          <option value={DeckSize.Classic}>{DeckSize.Classic}</option>
-          <option value={DeckSize.Short}>{DeckSize.Short}</option>
-        </select>
-      </div>
+      <ConfigurationWrapper>
+        <Configuration
+          players={playersNum}
+          deckSize={deckSize}
+          onDeckSizeChange={handleDeckSizeChange}
+          onPlayersChange={ handlePlayersNumChange}
+        />
+      </ConfigurationWrapper>
       <h4>Deal Button:</h4>
       <button className="play-button" onClick={onCardsDeal}>
         Deal Cards
       </button>
       <div>
-        <div>
+        <ResultsWrapper>
           {winners.length > 0 && <Results winners={winners} />}
-        </div>
-        {generatedPlayers.map(player => {
-          return (
-            <PlayerWrapper key={player.surname}>
-              <div>{player.name} {player.surname}</div>
-              <CardsWrapper>
-                {player.cards.length > 0 && player.cards.map((card) => {
-                  return (
-                    <CardWrapper
-                      key={`${card.rank}_${card.suits}`}
-                      borderColor={getCardColor(card, player.pairs)}
-                    >
-                      <img
-                        src={`/assets/playing-cards/${card.rank}${card.suits}.svg`}
-                        alt={`card ${card.suits} ${card.rank}`}
-                      />
-                    </CardWrapper>
-                  )
-                })}
-              </CardsWrapper>
-            </PlayerWrapper>
-          )})}
+        </ResultsWrapper>
+        <h4>Players at the table:</h4>
+        {generatedPlayers.map(player => <GamePlayer key={player.surname} player={player} />)}
       </div>
     </DeskWrapper>
   )

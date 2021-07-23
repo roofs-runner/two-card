@@ -1,4 +1,4 @@
-import { Suits, Ranks, Player } from 'types'
+import { DeckSize, Player, Ranks, Suits } from 'types'
 
 export const SUITES: Suits[] = [
   Suits.Diamonds,
@@ -62,3 +62,24 @@ export const players: Player[] = [
 ]
 
 export const DEFAULT_HAND_SIZE = 7
+
+export const playersConfig = [
+  { value: '2',
+    label: '2'
+  },
+  { value: '3',
+    label: '3'
+  },
+  { value: '4',
+    label: '4'
+  }
+]
+
+export const deckConfig = [
+  { value: DeckSize.Classic.toString(),
+    label: DeckSize.Classic.toString()
+  },
+  { value: DeckSize.Short.toString(),
+    label: DeckSize.Short.toString()
+  }
+]

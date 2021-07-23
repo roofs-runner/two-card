@@ -4,13 +4,16 @@ import { DEFAULT_HAND_SIZE, players } from 'constants/constants'
 import { generateCardsDeck, generatePlayerCards, getCardsPairs, getPairsNum, getWinners } from 'modules/core'
 import { Player, GamePlayersState } from 'types'
 
-export const usePlayers = (
+interface PlayerParams {
   playersNum: number,
   withCards: boolean,
   deckSize: number,
   currPlayers: Player[],
   setPlayers: (players: GamePlayersState) => void
-) => {
+}
+
+export const usePlayers = (params: PlayerParams) => {
+  const { playersNum, currPlayers, setPlayers, deckSize, withCards } = params
   const playersLength = [...Array(playersNum).keys()]
   const playersCopy = [...players]
   const cardsDeck = useMemo( () => generateCardsDeck(deckSize), [deckSize])
@@ -47,8 +50,6 @@ export const usePlayers = (
 
     setPlayers({ players: generatedPlayers })
   }
-
-  console.log('players--->>>>usePlayers', generatedPlayers)
 
   return {
     generatedPlayers,

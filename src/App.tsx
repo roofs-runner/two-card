@@ -2,11 +2,13 @@ import React from 'react'
 
 import { Desk } from 'components/Desk/Desk'
 
+import GlobalStyle from './GlobalStyle'
 import './App.css'
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
 
       <h1>Instructions:</h1>
       <p>

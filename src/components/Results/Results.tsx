@@ -1,4 +1,5 @@
-import React, { VFC }  from 'react'
+import React, { VFC, ReactElement }  from 'react'
+import styled from 'styled-components'
 
 import { Player } from 'types'
 
@@ -6,18 +7,31 @@ interface ResultsProps {
   winners: Player[]
 }
 
+const Name = styled.span`
+  font-weight: 600;
+`
+
+const Surname = styled(Name)`
+  margin-left: .5rem;
+`
+
 export const Results: VFC<ResultsProps> = ({ winners }) => {
-  let message = 'No winner in this round!'
+  let message: string | ReactElement = 'No winner in this round!'
 
   if (winners.length > 1) {
     message = 'This is a draw!'
   }
 
   if (winners.length === 1) {
-    message = `The winner of the round is ${winners[0].name} ${winners[0].surname} with the score of ${winners[0].pairsNum}`
+    message = <span data-testid="winner-message">
+      The winner is <Name>{winners[0].name}</Name>
+      <Surname>{winners[0].surname}</Surname> with the score of {winners[0].pairsNum}</span>
   }
 
   return (
-    <div>{message}</div>
+    <>
+      <h3>Here are the results of the round!</h3>
+      <div>{message}</div>
+    </>
   )
 }
