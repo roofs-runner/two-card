@@ -51,7 +51,7 @@ describe('usePlayers', () => {
         })
       })
 
-      it('returns players with cards and winners', () => {
+      it('returns players with cards and calculates winners', () => {
         expect(hook.result.current.generatedPlayers).toHaveLength(2)
         expect(hook.result.current.generatedPlayers[0].name).toEqual('Ron')
         expect(hook.result.current.generatedPlayers[0].surname).toEqual('Weasley')

@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react'
 
 import { Desk } from './Desk'
 
-test('renders component on mount with not cards', () => {
+test('renders component on mount with no cards', () => {
   prepareDesk()
 
   const cardsWrapper = getCardsWrapper()
@@ -11,12 +11,13 @@ test('renders component on mount with not cards', () => {
   expect(cardsWrapper.length).toBe(0)
 })
 
-test('generates cards on button click', () => {
+test('generates cards for players on button click', () => {
   prepareDesk()
 
   const dealCardsButton = getDealsCardsButton()
   expect(dealCardsButton).toBeInTheDocument()
   fireEvent.click(dealCardsButton)
+
   const cardsWrapper = getCardsWrapper()
   const cards = getCards()
   // meaning two players are at the table
@@ -35,7 +36,6 @@ test('generates additional players and cards for them on configuration change', 
   fireEvent.change(dropdownEl[0], {
     target: { value: '3' }
   })
-
   const dealCardsButton = getDealsCardsButton()
   fireEvent.click(dealCardsButton)
   const cardsWrapper = getCardsWrapper()
@@ -43,7 +43,7 @@ test('generates additional players and cards for them on configuration change', 
 
   // meaning three players are at the table
   expect(cardsWrapper.length).toBe(3)
-  // meaning two players have 7 cards each
+  // meaning three players have 7 cards each
   expect(cards.length).toBe(21)
 })
 
@@ -63,7 +63,7 @@ test('resets players on deck size change', () => {
     target: { value: '36' }
   })
   cardsWrapper = getCardsWrapper()
-  // meaning two players are at the table
+  // game is reset, so no players have no cards
   expect(cardsWrapper.length).toBe(0)
 })
 

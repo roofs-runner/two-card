@@ -11,8 +11,6 @@ const initialPlayers: GamePlayersState = {
   players: []
 }
 
-const DeskWrapper = styled.div``
-
 const ConfigurationWrapper = styled.div`
   margin: 4rem 0;
 `
@@ -49,7 +47,7 @@ export const Desk = () => {
   }, [setDeckSize, setRound])
 
   return (
-    <DeskWrapper>
+    <article>
       <ConfigurationWrapper>
         <Configuration
           players={playersNum}
@@ -69,6 +67,6 @@ export const Desk = () => {
         <h4>Players at the table:</h4>
         {generatedPlayers.map(player => <GamePlayer key={player.surname} player={player} />)}
       </div>
-    </DeskWrapper>
+    </article>
   )
 }

@@ -14,7 +14,7 @@ const optionsMock = [
   }
 ]
 
-test('render Dropdown component on mount', () => {
+test('renders Dropdown component on mount', () => {
   const { getByTestId, getAllByTestId } = render(
     <Dropdown options={optionsMock} value={'Apple'} onChange={jest.fn} />
   )

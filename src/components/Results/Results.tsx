@@ -23,9 +23,10 @@ export const Results: VFC<ResultsProps> = ({ winners }) => {
   }
 
   if (winners.length === 1) {
+    const winner = winners[0]
     message = <span data-testid="winner-message">
-      The winner is <Name>{winners[0].name}</Name>
-      <Surname>{winners[0].surname}</Surname> with the score of {winners[0].pairsNum}</span>
+      The winner is <Name>{winner.name}</Name>
+      <Surname>{winner.surname}</Surname> with the score of {winner.pairsNum}</span>
   }
 
   return (

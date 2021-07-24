@@ -12,7 +12,7 @@ test('render Results component on mount and there are no winners', () => {
   expect(screen.getByText('No winner in this round!')).toBeInTheDocument()
 })
 
-test('renders component with winner info', () => {
+test('renders component with a winner info', () => {
   setupComponent([player])
 
   expect(screen.getByTestId('winner-message')).toBeInTheDocument()
