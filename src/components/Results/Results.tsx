@@ -16,11 +16,9 @@ const Surname = styled(Name)`
 `
 
 export const Results: VFC<ResultsProps> = ({ winners }) => {
-  let message: string | ReactElement = 'No winner in this round!'
+  let message: string | ReactElement = ''
 
-  if (winners.length > 1) {
-    message = 'This is a draw!'
-  }
+  message = winners.length > 1 ? 'This is a draw!' : 'No winner in this round!'
 
   if (winners.length === 1) {
     const winner = winners[0]

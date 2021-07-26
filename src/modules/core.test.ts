@@ -1,5 +1,5 @@
 import { Card, DeckSize } from 'types'
-import { cardsMock, cardsPairs, cardsMockNoPairs, playersMock, playersMock2 } from 'mocks/mocks'
+import { cardsMock, cardsPairs, cardsMockNoPairs, playersMock, playersMock2, playersMock4 } from 'mocks/mocks'
 
 import { generateCardsDeck, generatePlayerCards, getCardsPairs, getPairsNum, getWinners } from './core'
 
@@ -71,6 +71,14 @@ describe('getWinners', () => {
     it('returns multiple players when it is a draw', () => {
       expect(result.length).toBe(2)
       expect(result).toStrictEqual(playersMock2)
+    })
+  })
+
+  describe('when players have no pairs', () => {
+    const result = getWinners(playersMock4)
+
+    it('returns empty array for winners', () => {
+      expect(result.length).toBe(0)
     })
   })
 })

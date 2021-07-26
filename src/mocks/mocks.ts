@@ -119,6 +119,23 @@ export const playersMock3: Player[] = [
   }
 ]
 
+export const playersMock4: Player[] = [
+  {
+    name: 'Ron',
+    surname: 'Weasley',
+    cards: cardsMockNoPairs,
+    pairs: {},
+    pairsNum: 0
+  },
+  {
+    name: 'Hermione',
+    surname: 'Granger',
+    cards: cardsMockNoPairs,
+    pairs: {},
+    pairsNum: 0
+  }
+]
+
 export const player: Player = {
   name: 'Hermione',
   surname: 'Granger',

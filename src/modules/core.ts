@@ -73,6 +73,10 @@ export const getPairsNum = (pairs: PairCardType) => {
 export const getWinners = (players: Player[]) => {
   let winners: Player[] = []
 
+  if (players.every(player => player.pairsNum === 0)) {
+    return []
+  }
+
   for (const player of players) {
     if (winners.length === 0 || winners.some(winner => winner.pairsNum < player.pairsNum)) {
       winners = [player]

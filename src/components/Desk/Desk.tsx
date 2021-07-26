@@ -62,7 +62,7 @@ export const Desk = () => {
       </button>
       <div>
         <ResultsWrapper>
-          {winners.length > 0 && <Results winners={winners} />}
+          {round > 0 && <Results winners={winners} />}
         </ResultsWrapper>
         <h4>Players at the table:</h4>
         {generatedPlayers.map(player => <GamePlayer key={player.surname} player={player} />)}
